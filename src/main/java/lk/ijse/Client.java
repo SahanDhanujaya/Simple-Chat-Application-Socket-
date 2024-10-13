@@ -11,24 +11,26 @@ public class Client {
         Scanner scanner = new Scanner(System.in);
         do {
             try {
-                //remote socket
+                // Connect to server
                 Socket socket = new Socket("localhost", 3000);
 
-                //request to server
-                System.out.print("Client : ");
-                String message = scanner.next();
+                // Request to server
+                System.out.print("Client: ");
+                String message = scanner.nextLine();  // Use nextLine() to capture the full message
                 DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
                 dataOutputStream.writeUTF(message);
 
-                //send the data
+                // Send the data
                 dataOutputStream.flush();
+
+                // Receive the response
                 DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-                System.out.println(dataInputStream.readUTF());
+                System.out.println("Server: " + dataInputStream.readUTF());
 
                 socket.close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }while (true);
+        } while (true);
     }
 }

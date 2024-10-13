@@ -24,7 +24,7 @@ public class Server {
                 System.out.println(dataInputStream.readUTF());//sout
 
                 System.out.print("Server : ");
-                String input = scanner.next();
+                String input = scanner.nextLine();
                 DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
 
                 //sending message
@@ -33,8 +33,6 @@ public class Server {
 
                 //close
                 socket.close();
-
-
 
         }
 
